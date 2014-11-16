@@ -19,6 +19,7 @@ def parse_data_from_arxiv_api(soup):
     except Exception as e:
          print e
          print 'trouble parsing results'
+	 return False
     return output
 
 
@@ -35,7 +36,8 @@ def scrape_arxiv_api_convert_to_dict(category,start,max_number):
         entries=[e for e in soup.find_all('entry')]
         for entry in entries:
             parsed_data=parse_data_from_arxiv_api(entry)
-            papers_scraped[parsed_data['id']]=parsed_data
+            if parsed_data:
+            	papers_scraped[parsed_data['id']]=parsed_data
         return papers_scraped,category+'start'+str(start)+'max'+str(max_number)
     
 def save_into_pickle(papers,query):
