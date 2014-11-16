@@ -17,8 +17,6 @@ def parse_data_from_arxiv_api(soup):
         output['href']=soup.find_all('link')[-1]['href']
         
     except Exception as e:
-         print e
-         print 'trouble parsing results'
 	 return False
     return output
 
