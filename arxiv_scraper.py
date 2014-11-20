@@ -32,6 +32,7 @@ def scrape_arxiv_api_convert_to_dict(category,start,max_number):
             print "cannot contact arxiv"
             
         entries=[e for e in soup.find_all('entry')]
+        print len(entries)
         for entry in entries:
             parsed_data=parse_data_from_arxiv_api(entry)
             if parsed_data:
