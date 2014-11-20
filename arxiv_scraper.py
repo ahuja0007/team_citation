@@ -24,7 +24,7 @@ def parse_data_from_arxiv_api(soup):
 """Scrape Arxiv and return a dictionary of dictionaries(each sub dictionary is a paper)"""
 def scrape_arxiv_api_convert_to_dict(category,start,max_number): 
         papers_scraped={}
-        url = 'http://export.arxiv.org/api/query?search_query=all:%s&start=%s&max_results=%s'%(category,start,max_number)
+        url = 'http://export.arxiv.org/api/query?search_query=all:%s&start=%s&max_results=%s&sortBy=submittedDate&sortOrder=ascending'%(category,start,max_number)
         try:
             data = urllib.urlopen(url).read()
             soup=BeautifulSoup(data)
