@@ -20,13 +20,7 @@ class MRInspireReduce(MRJob):
     authors.extend([cleanname(a) for a in paper['authors']])
     authors.extend([cleanname(a) for a in paper['co-authors']])
 
-    if len(authors) > 49:
-      authors.sort()
-      collaboration = "COLLABORATION_" + authors[0]
-      for i in xrange(len(authors)):
-        yield authors[i], [collaboration, 1/sqrt(len(authors))]
-        yield collaboration, [authors[i], 1/sqrt(len(authors))]
-    else:
+    if len(authors) < 50:
       for i in xrange(len(authors)):
         for j in xrange(len(authors)):
           if i != j:
